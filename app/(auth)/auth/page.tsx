@@ -22,7 +22,7 @@ export default async function LoginPage({ searchParams }: Props) {
           <h2 className="font-geist text-2xl leading-tight font-bold text-white md:text-5xl">
             The journey starts
           </h2>
-          <p className="font-semibo mt-1 text-white/90 md:text-4xl">with a single click.</p>
+          <p className="font-geist mt-1 text-white/90 md:text-4xl">with a single click.</p>
         </div>
       </div>
       <Credentials defaultTab={defaultTab} />

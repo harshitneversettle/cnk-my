@@ -61,7 +61,7 @@ const QueryParams: React.FC = () => {
       <div className={`${open ? 'block' : 'hidden'} flex flex-col gap-5 md:flex`}>
         <div className={`flex flex-col gap-1.5`}>
           <label className="text-gray text-[11px] font-semibold tracking-wider uppercase">
-            Origin Vector
+            DEPARTURE FROM
           </label>
           <Dropdown
             options={[
@@ -77,13 +77,13 @@ const QueryParams: React.FC = () => {
         </div>
         <div className="flex flex-col gap-1.5">
           <label className="text-gray text-[11px] font-semibold tracking-wider uppercase">
-            T-Zero Date
+            DEPARTURE DATE
           </label>
           <input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="focus:border-blue border-roundness border-white-secondary w-full cursor-pointer border bg-white px-3 py-2 text-sm text-[#171717] focus:outline-none"
+            className="focus:border-blue border-roundness border-white-secondary w-full cursor-pointer border bg-white px-3 py-2 text-sm text-black/70 focus:outline-none"
           />
         </div>
         <div className="flex flex-col gap-1.5">
@@ -98,7 +98,7 @@ const QueryParams: React.FC = () => {
         </div>
         <div className="flex flex-col gap-1.5">
           <label className="text-gray text-[11px] font-semibold tracking-wider uppercase">
-            Pax Count
+            PASSENGERS Count
           </label>
           <Dropdown
             options={['1 Entity', '2 Entities', '3 Entities', '4 Entities', '5+ Entities']}

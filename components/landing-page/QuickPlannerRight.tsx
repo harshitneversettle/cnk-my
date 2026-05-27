@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Plane, BedDouble, Upload, TrendingUp, Star, Plus, RefreshCw } from 'lucide-react';
+import { Plane, BedDouble, Upload, TrendingUp, Star, Plus } from 'lucide-react';
 import PrimaryButton from '@/components/ui/primaryButton';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -24,7 +24,6 @@ interface ResultCard {
   delta: string;
   efficiencyGain: string;
 }
-
 const cards: ResultCard[] = [
   {
     id: 1,
@@ -40,28 +39,29 @@ const cards: ResultCard[] = [
     hotel: 'TAJ EXOTICA',
     nights: 5,
     level: 5,
-    clearance: 'F',
-    processingTime: '0 PROCESSING TIME',
+    clearance: 'NO VISA',
+    processingTime: 'No extra hassle',
     delta: '₹14,600',
     efficiencyGain: 'EFFICIENCY GAIN',
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&q=80',
-    node: 'KERALA',
-    region: 'INDIA',
-    rating: 4.9,
-    price: 52300,
-    originalPrice: 71000,
+    image:
+      'https://plus.unsplash.com/premium_photo-1661964303354-f0496d6d6e0b?q=80&w=1620&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    node: 'DUBAI',
+    region: 'UAE',
+    rating: 4.8,
+    price: 142500,
+    originalPrice: 178000,
     route: 'DIRECT ROUTE',
-    airline: 'AIR INDIA',
-    duration: '2H 45M',
-    hotel: 'KUMARAKOM LAKE RESORT',
+    airline: 'EMIRATES',
+    duration: '3H 25M',
+    hotel: 'ATLANTIS THE PALM',
     nights: 6,
     level: 5,
-    clearance: 'F',
-    processingTime: '0 PROCESSING TIME',
-    delta: '₹18,700',
+    clearance: 'VISA ON ARRIVAL',
+    processingTime: 'ON ARRIVAL',
+    delta: '₹35,500',
     efficiencyGain: 'EFFICIENCY GAIN',
   },
   {
@@ -78,8 +78,8 @@ const cards: ResultCard[] = [
     hotel: 'RAMBAGH PALACE',
     nights: 4,
     level: 4,
-    clearance: 'F',
-    processingTime: '0 PROCESSING TIME',
+    clearance: 'NO VISA',
+    processingTime: 'No extra hassle',
     delta: '₹13,600',
     efficiencyGain: 'EFFICIENCY GAIN',
   },
@@ -97,8 +97,8 @@ const cards: ResultCard[] = [
     hotel: 'BAREFOOT RESORT',
     nights: 7,
     level: 5,
-    clearance: 'F',
-    processingTime: '0 PROCESSING TIME',
+    clearance: 'NO VISA',
+    processingTime: 'No extra hassle',
     delta: '₹21,800',
     efficiencyGain: 'EFFICIENCY GAIN',
   },
@@ -116,8 +116,8 @@ const cards: ResultCard[] = [
     hotel: 'THE ORCHARD GREENS',
     nights: 4,
     level: 3,
-    clearance: 'F',
-    processingTime: '0 PROCESSING TIME',
+    clearance: 'NO VISA',
+    processingTime: 'No extra hassle',
     delta: '₹10,600',
     efficiencyGain: 'EFFICIENCY GAIN',
   },
@@ -135,8 +135,8 @@ const cards: ResultCard[] = [
     hotel: 'THE IMPERIAL',
     nights: 3,
     level: 4,
-    clearance: 'F',
-    processingTime: '0 PROCESSING TIME',
+    clearance: 'NO VISA',
+    processingTime: 'No extra hassle',
     delta: '₹9,300',
     efficiencyGain: 'EFFICIENCY GAIN',
   },
@@ -146,28 +146,26 @@ interface ResultCardProps {
 }
 function ResultCard({ card }: ResultCardProps) {
   return (
-    <div className="border-white-secondary border-roundness flex max-w-[864px] flex-col overflow-hidden rounded border bg-white">
+    <div className="border-white-secondary border-roundness group flex max-w-[864px] flex-col overflow-hidden rounded border bg-white">
       <div className="relative h-[200px] w-full overflow-hidden">
-        <Image src={card.image} alt={card.node} fill className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-
-        <div className="absolute top-3 left-3">
-          <span className="flex items-center gap-1.5 rounded bg-white/90 px-2.5 py-1 text-[12px] font-semibold tracking-wider text-black/80 uppercase">
-            <RefreshCw size={10} strokeWidth={2} />
-            OPTIMAL INDEX
-          </span>
-        </div>
+        <Image
+          src={card.image}
+          alt={card.node}
+          fill
+          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
 
         <button className="absolute top-3 right-3 flex h-6 w-6 items-center justify-center rounded bg-white/90 text-black/80 hover:bg-white">
           <Plus size={14} strokeWidth={2} />
         </button>
 
-        <div className="absolute bottom-3 left-3">
-          <p className="text-base font-semibold text-white">NODE: {card.node}</p>
-          <p className="font text-[11px] tracking-wider">REGION: {card.region}</p>
+        <div className="absolute bottom-3 left-3 transition-transform duration-500 group-hover:-translate-y-1">
+          <p className="text-base font-semibold text-white">{card.node}</p>
+          <p className="font text-[11px] tracking-wider">{card.region}</p>
         </div>
 
-        <div className="absolute right-3 bottom-3 flex items-center gap-1 rounded bg-black/40 px-2 py-0.5">
+        <div className="absolute right-3 bottom-3 flex items-center gap-1 rounded bg-black/40 px-2 py-0.5 transition-transform duration-500 group-hover:-translate-y-1">
           <Star size={11} className="fill-white text-white" />
           <span className="text-xs font-semibold text-white">{card.rating}</span>
         </div>
@@ -210,7 +208,7 @@ function ResultCard({ card }: ResultCardProps) {
           <div className="flex min-h-[48px] flex-col gap-0.5">
             <span className="flex items-center gap-1.5 text-[12px] font-bold tracking-wider text-black/80 uppercase md:text-[12px]">
               <Upload size={11} strokeWidth={2} />
-              CLEARANCE: {card.clearance}
+              {card.clearance}
             </span>
             <span className="text-gray text-[12px]">{card.processingTime}</span>
           </div>
@@ -218,11 +216,12 @@ function ResultCard({ card }: ResultCardProps) {
           <div className="flex min-h-[48px] flex-col gap-0.5">
             <span className="flex items-center gap-1.5 text-[12px] font-bold tracking-wider text-(--color-green) uppercase">
               <TrendingUp size={11} strokeWidth={2} />
-              DELTA: {card.delta}
+              SAVE: {card.delta}
             </span>
             <span className="text-gray text-[12px]">{card.efficiencyGain}</span>
           </div>
         </div>
+
         <Link href={`/packages/${card.id}`}>
           <PrimaryButton label="VIEW DETAILS" className="py-3" />
         </Link>

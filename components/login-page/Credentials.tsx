@@ -2,6 +2,7 @@
 import { check } from '@/helpers/credentialsCheck';
 import PrimaryButton from '@/components/ui/primaryButton';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   defaultTab: 'signin' | 'signup';
@@ -10,12 +11,19 @@ export default function Credentials({ defaultTab }: Props) {
   const [tab, setTab] = useState<'signin' | 'signup'>(defaultTab);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
   function handleSignin() {
+    router.push('/');
+    return;
+    // TODO: Implement signin logic here. For now, it just redirects to the homepage.
     if (!check(email, password)) return;
   }
 
   function handleSignup() {
+    router.push('/');
+    return;
+    // TODO: Implement signup logic here. For now, it behaves the same as signin.
     if (!check(email, password)) return;
   }
   return (

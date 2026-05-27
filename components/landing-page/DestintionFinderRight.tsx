@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Calendar, CreditCard, Hotel, Plane, Sparkles, Star } from 'lucide-react';
+import { Calendar, CreditCard, Hotel, Plane, Sparkles, Star, X } from 'lucide-react';
 import PrimaryButton from '../ui/primaryButton';
 
 interface Week {
@@ -66,12 +66,20 @@ const data: MonthGroup[] = [
   },
 ];
 
-function WeekCard({ week }: { week: Week }) {
+function WeekCard({ week, onClose }: { week: Week; onClose: () => void }) {
   return (
-    <div className="w-full rounded-2xl bg-white p-5 shadow-md md:max-w-100 md:min-w-100">
-      <div className="mb-1 flex items-center gap-2 text-base font-semibold text-gray-800">
-        <Calendar size={16} />
-        <span>Week of {week.date}, 2026</span>
+    <div className="mt-2 w-full rounded-2xl bg-white p-5 shadow-md md:max-w-100 md:min-w-100">
+      <div className="mb-1 flex justify-between gap-2 text-base font-semibold text-gray-800">
+        <div className="flex items-center gap-2">
+          <Calendar size={16} />
+          <span>Week of {week.date}, 2026</span>
+        </div>
+        <button
+          onClick={onClose}
+          className="bg-gray/20 flex h-6 w-6 items-center justify-center rounded-full"
+        >
+          <X size={17} />
+        </button>
       </div>
 
       {week.isCheapest && (
@@ -143,10 +151,16 @@ const DestinationFinderRight: React.FC = () => {
     }
   };
 
+  const handleCardClose = () => {
+    setOpen(false);
+    setSelected('');
+  };
+
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (!(e.target as Element).closest('.week-card-container')) {
         setOpen(false);
+        setSelected('');
       }
     };
 
@@ -187,7 +201,7 @@ const DestinationFinderRight: React.FC = () => {
                         setSelected(i.date);
                         handleClick(i);
                       }}
-                      className={`border-roundness relative z-10 flex min-w-[120px] cursor-pointer flex-col items-start gap-1 border px-4 py-3 text-left transition-all duration-200 ${
+                      className={`border-roundness relative z-10 flex min-w-[120px] cursor-pointer flex-col items-start gap-1 border px-4 py-3 text-left transition-all duration-100 ${
                         isActive
                           ? 'border-blue bg-blue/10 text-blue!'
                           : 'hover:border-blue/40 border-white-secondary bg-white'
@@ -210,8 +224,8 @@ const DestinationFinderRight: React.FC = () => {
                       </span>
                     </button>
                     {open && isActive && (
-                      <div className="absolute left-0 z-20 w-full px-4 md:left-auto">
-                        <WeekCard key={i.date} week={i} />
+                      <div className="absolute left-0 z-20 w-full px-4 md:left-auto md:w-auto">
+                        <WeekCard key={i.date} week={i} onClose={handleCardClose} />
                       </div>
                     )}
                   </div>
