@@ -13,7 +13,7 @@ concurrency:
 jobs:
   run-flight-cron:
     name: Refresh flight_price_cache
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     timeout-minutes: 120 # 4000 jobs at ~1 req/s ≈ 70 min; 120 is a safe ceiling
 
     steps:
